@@ -1,0 +1,23 @@
+{
+	"manifest_version": 2,
+	"name": "PTab",
+	"short_name": "PTab",
+	"description": "Personnalize your new tab page",
+	"version": "1.0",
+	"icons": {
+		"16": "assets/icons/icon16.png",
+		"48": "assets/icons/icon48.png",
+		"128": "assets/icons/icon128.png"
+	},
+	"homepage_url": "https://github.com/clementballot38/PTab",
+	"minimum_chrome_version": "26.0.1428",
+	"options_page": "index.html",
+	"chrome_url_overrides": {
+		"newtab": "index.html"
+	},
+	"permissions": [
+	],
+	"web_accessible_resources": [
+		"index.html"
+	]
+}

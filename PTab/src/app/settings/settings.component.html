@@ -1,0 +1,96 @@
+<div id="container">
+	<div id="menu">
+		<div *ngFor="let item of this.getMenuItems()" class="menu_item {{item.url == this.getState()}}" (click)="this.goto(item.url)">
+			<img *ngIf="item.icon" src="assets/svg/{{item.icon}}.svg" class="menu_icon" />
+			{{item.name}}
+		</div>
+	</div>
+
+
+
+	<div id="page">
+		<div *ngIf="this.getState() == ''">
+			<h1>
+				General settings
+			</h1>
+
+			<h2>
+				Search bar
+			</h2>
+			<div class="section">
+				Position : 
+				<select [value]="this.getSearchPosition()" (change)="this.setSearchPosition($event)">
+					<option value="toptop">top top</option>
+					<option value="top">top</option>
+					<option value="center">center</option>
+					<option value="bottom">bottom</option>
+					<option value="bottombottom">bottom bottom</option>
+				</select>
+			</div>
+
+
+			<h2>
+				Background
+			</h2>
+			<div class="section">
+				<toggle-switch [state]="this.useImage()" (value)="this.setUseImage($event)"></toggle-switch> Use image as background
+				<br><br>
+
+				<div *ngIf="this.useImage()" class="section">
+					<h3>
+						Image settings
+					</h3>
+					<toggle-switch [state]="this.isRandom()" (value)="this.setRandom($event)"></toggle-switch> Random background
+				</div>
+				<div *ngIf="!this.useImage()" class="section">
+					<h3>
+						Background color
+					</h3>
+					<input type="color" [value]="this.getBackgroundColor()" (change)="this.setBackgroundColor($event)" />
+				</div>
+			</div>
+		</div>
+
+		<div *ngIf="this.getState() == 'images'">
+			<h2>Images</h2>
+
+			<div id="img_container">
+				<div *ngIf="this.isRandom()" id="random_text">
+					Random background activated, click on an image to select it permanently
+				</div>
+				<div *ngIf="this.getImages().length > 0" id="list_container">
+					<div *ngFor="let image of this.getImages()" class="list_item" (click)="this.selectImage(image)">
+						<div class="delete" (click)="this.delete(image)">x</div>
+						<img src="{{image.image}}" class="image" />
+						<img class="selected" *ngIf="this.isSelected(image)" src="assets/svg/done.svg"/>
+						{{image.name}}
+					</div>
+				</div>
+				<div *ngIf="this.getImages().length == 0" style="text-align: center;">
+					No images
+				</div>
+
+				<div id="add_image" (click)="this.openFileDialog()">
+					<input type="file" id="file_input" accept="image/*" multiple (change)="this.selectFile($event)"/>
+					<img src="assets/svg/add_image.svg" />
+				</div>
+			</div>
+		</div>
+
+		<div *ngIf="this.getState() == 'about'">
+			<h2>About</h2>
+			<img id="logo" src="assets/icon.svg" />
+			<div id="desc">
+				PTab (for Personnalized Tab) is a free, open-source extension for Chromium-based web browsers.
+				<br><br>
+				Created with ❤️ and ☕ by Clément BALLOT
+				<br><br>
+				Hosted on <a target="_blank" href="https://github.com">github.com</a>
+			</div>
+		</div>
+	</div>
+
+
+
+	<img id="close" src="assets/svg/close.svg" (click)="this.close()" />
+</div>

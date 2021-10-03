@@ -1,0 +1,5 @@
+<img *ngIf="this.displayImage()" src="{{this.getImage()}}" class="background" />
+<img *ngIf="!this.displayImage()" [style.background-color]="this.getBackgroundColor()" class="background" />
+<div id="main">
+	<router-outlet></router-outlet>
+</div>

@@ -1,0 +1,30 @@
+#switch {
+	display: inline-block;
+	margin: 8px 4px;
+	vertical-align: middle;
+	background: #7f7f7f;
+	width: 48px;
+	height: 16px;
+	border-radius: 16px;
+	cursor: pointer;
+	box-shadow: 0 0 15px #333;
+	transition: all .2s;
+}
+#switch.true {
+	background: #2196f3;
+}
+
+#dot {
+	background: white;
+	width: 24px;
+	height: 24px;
+	border-radius: 100%;
+	position: relative;
+	top: -4px;
+	box-shadow: 0 0 15px #333;
+	left: 0;
+	transition: all .2s;
+}
+#dot.true {
+	left: 24px;
+}
