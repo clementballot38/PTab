@@ -176,3 +176,29 @@ a {
 #file_input {
 	display: none;
 }
+
+
+
+#position_container {
+	width: 40vw;
+	height: 40vh;
+	background: rgba(0, 0, 0, 0.4);
+	border: 2px solid #7f7f7f;
+	display: block;
+	margin: auto;
+}
+.search_position {
+	stroke: none;
+	fill: rgba(127, 127, 127, 0.5);
+	width: 2vw;
+	height: 2vh;
+	transform: translateX(-1vw) translateY(-1vh);
+	transition: all .2s;
+	cursor: pointer;
+}
+.search_position.selected {
+	fill: #ccc;
+	width: 8vw;
+	height: 1.1vh;
+	transform: translateX(-4vw) translateY(-0.55vh);
+}

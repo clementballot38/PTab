@@ -9,7 +9,8 @@ export interface Image {
 	id: number
 }
 
-export type SearchPosition = 'toptop' | 'top' | 'center' | 'bottom' | 'bottombottom';
+export type SearchVerticalPosition = 'toptop' | 'top' | 'center' | 'bottom' | 'bottombottom';
+export type SearchHorizontalPosition = 'leftleft' | 'left' | 'middle' | 'right' | 'rightright';
 
 
 
@@ -24,7 +25,8 @@ export class Globales {
 	private random_image: boolean = false;
 	private image_index: number = 0;
 	private use_image: boolean = false;
-	private search_position: SearchPosition = 'center';
+	private search_vertical_position: SearchVerticalPosition = 'center';
+	private search_horizontal_position: SearchHorizontalPosition = 'middle';
 
 
 
@@ -132,12 +134,17 @@ export class Globales {
 
 
 
-	public getSearchPosition(): SearchPosition {
-		return this.search_position;
+	public getSearchVerticalPosition(): SearchVerticalPosition {
+		return this.search_vertical_position;
 	}
-	public setSearchPosition(p: SearchPosition): void {
-		this.search_position = p;
-		window.localStorage.setItem('search_position', this.search_position);
+	public getSearchHorizontalPosition(): SearchHorizontalPosition {
+		return this.search_horizontal_position;
+	}
+	public setSearchPosition(h: SearchHorizontalPosition, v: SearchVerticalPosition): void {
+		this.search_horizontal_position = h;
+		this.search_vertical_position = v;
+		window.localStorage.setItem('search_horizontal_position', this.search_horizontal_position);
+		window.localStorage.setItem('search_vertical_position', this.search_vertical_position);
 	}
 
 
@@ -181,8 +188,12 @@ export class Globales {
 		this.use_image = s.getItem('use_image') === 'true';
 
 		{
-			let temp = s.getItem('search_position');
-			this.search_position = <SearchPosition> (temp != null ? temp : 'center');
+			let temp = s.getItem('search_vertical_position');
+			this.search_vertical_position = <SearchVerticalPosition> (temp != null ? temp : 'center');
+		}
+		{
+			let temp = s.getItem('search_horizontal_position');
+			this.search_horizontal_position = <SearchHorizontalPosition> (temp != null ? temp : 'middle');
 		}
 	}
 

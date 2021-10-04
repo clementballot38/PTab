@@ -19,13 +19,15 @@
 			</h2>
 			<div class="section">
 				Position : 
-				<select [value]="this.getSearchPosition()" (change)="this.setSearchPosition($event)">
-					<option value="toptop">top top</option>
-					<option value="top">top</option>
-					<option value="center">center</option>
-					<option value="bottom">bottom</option>
-					<option value="bottombottom">bottom bottom</option>
-				</select>
+				<svg id="position_container">
+					<g *ngFor="let vert of this.getVerticalPositions(); let i = index">
+						<rect *ngFor="let horiz of this.getHorizontalPositions(); let j = index"
+							class="search_position {{this.selectedPosition(horiz, vert)}}"
+							[attr.x]="(j+0.5)*20+'%'" [attr.y]="(i+0.5)*20+'%'" width="10" height="10"
+							(click)="this.setSearchPosition(horiz, vert)"
+						/>
+					</g>
+				</svg>
 			</div>
 
 
@@ -85,7 +87,7 @@
 				<br><br>
 				Created with ❤️ and ☕ by Clément BALLOT
 				<br><br>
-				Hosted on <a target="_blank" href="https://github.com">github.com</a>
+				Hosted on <a target="_blank" href="https://github.com/clementballot38/PTab">github.com</a>
 			</div>
 		</div>
 	</div>

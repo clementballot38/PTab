@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Globales, Image, SearchPosition } from '../common/globales';
+import { Globales, Image, SearchVerticalPosition, SearchHorizontalPosition } from '../common/globales';
 
 
 
@@ -129,11 +129,30 @@ export class SettingsComponent implements OnInit {
 
 
 
-	public setSearchPosition(ev: Event): void {
-		this.globales.setSearchPosition(<SearchPosition> (<HTMLInputElement>ev.target)!.value);
+	public setSearchPosition(h: SearchHorizontalPosition, v: SearchVerticalPosition): void {
+		this.globales.setSearchPosition(h, v);
 	}
-	public getSearchPosition(): SearchPosition {
-		return this.globales.getSearchPosition();
+
+
+
+	public getVerticalPositions(): SearchVerticalPosition[] {
+		return ['toptop', 'top', 'center', 'bottom', 'bottombottom'];
+	}
+	public getHorizontalPositions(): SearchHorizontalPosition[] {
+		return ['leftleft', 'left', 'middle', 'right', 'rightright'];
+	}
+
+	public selectedPosition(h: SearchHorizontalPosition, v: SearchVerticalPosition): string {
+		return h==this.globales.getSearchHorizontalPosition() && v==this.globales.getSearchVerticalPosition() ? 'selected' : '';
+	}
+
+
+
+	private getIndex(val: string, tab: string[]): number {
+		for(let i=0; i<tab.length; i++)
+			if(tab[i] == val)
+				return i;
+		return 0;
 	}
 
 

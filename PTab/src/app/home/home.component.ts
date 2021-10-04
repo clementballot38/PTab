@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Globales, SearchPosition } from '../common/globales';
+import { Globales, SearchVerticalPosition, SearchHorizontalPosition } from '../common/globales';
 
 
 
@@ -41,8 +41,11 @@ export class HomeComponent implements OnInit {
 
 
 
-	public getSearchPosition(): SearchPosition {
-		return this.globales.getSearchPosition();
+	public getSearchVerticalPosition(): SearchVerticalPosition {
+		return this.globales.getSearchVerticalPosition();
+	}
+	public getSearchHorizontalPosition(): SearchHorizontalPosition {
+		return this.globales.getSearchHorizontalPosition();
 	}
 
 

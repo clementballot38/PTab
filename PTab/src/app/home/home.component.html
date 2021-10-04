@@ -1,9 +1,11 @@
-<div id="container" class="{{this.getSearchPosition()}}">
-	<div id="top_spacer"></div>
+<div id="container">
+	<div id="top_spacer" class="{{this.getSearchVerticalPosition()}}"></div>
 	<div id="search_container">
+		<div id="left_spacer" class="{{this.getSearchHorizontalPosition()}}"></div>
 		<input id="searchbar" [(ngModel)]="this.url" type="text" (keyup)="this.search($event)" autofocus/>
+		<div id="right_spacer" class="{{this.getSearchHorizontalPosition()}}"></div>
 	</div>
-	<div id="bottom_spacer"></div>
+	<div id="bottom_spacer" class="{{this.getSearchVerticalPosition()}}"></div>
 
 	<img id="settings" src="assets/svg/settings.svg" (click)="this.openSettings()" />
 </div>
