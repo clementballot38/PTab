@@ -45,7 +45,7 @@ To compile & install PTab in your browser :
 
 ## Screenshots
 ![PTab - Profil 1 – Microsoft​ Edge 03_10_2021 23_57_52](https://user-images.githubusercontent.com/39455111/135772802-5699cd0b-45ec-421a-8e23-1f99a2f6faee.png)
-![PTab - Profil 1 – Microsoft​ Edge 03_10_2021 23_58_43](https://user-images.githubusercontent.com/39455111/135772816-997c9218-9f53-4548-9ca5-0f1cb02594de.png)
+![PTab - Profil 1 – Microsoft​ Edge 04_10_2021 11_27_24](https://user-images.githubusercontent.com/39455111/135827234-5a0bb72d-cac9-4a7f-bfd0-f01a9a585071.png)
 ![PTab - Profil 1 – Microsoft​ Edge 03_10_2021 23_59_19](https://user-images.githubusercontent.com/39455111/135772837-87647ab6-38ed-4aae-bbcb-36aeb0071a90.png)
 ![PTab - Profil 1 – Microsoft​ Edge 03_10_2021 23_59_57](https://user-images.githubusercontent.com/39455111/135772853-a60bfc07-d3bd-4423-bc73-c3fde17fe2e1.png)
 
