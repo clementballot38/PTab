@@ -1,6 +1,6 @@
 <div id="container">
 	<div id="top_spacer" class="{{this.getSearchVerticalPosition()}}"></div>
-	<div id="search_container">
+	<div id="search_container" *ngIf="this.showSearchBar()">
 		<div id="left_spacer" class="{{this.getSearchHorizontalPosition()}}"></div>
 		<input id="searchbar" [(ngModel)]="this.url" type="text" (keyup)="this.search($event)" autofocus/>
 		<div id="right_spacer" class="{{this.getSearchHorizontalPosition()}}"></div>

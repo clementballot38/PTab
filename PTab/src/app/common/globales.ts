@@ -3,6 +3,10 @@ import { Router } from '@angular/router';
 
 
 
+declare global {
+	var chrome: any;
+}
+
 export interface Image {
 	name: string,
 	image: string,
@@ -11,6 +15,11 @@ export interface Image {
 
 export type SearchVerticalPosition = 'toptop' | 'top' | 'center' | 'bottom' | 'bottombottom';
 export type SearchHorizontalPosition = 'leftleft' | 'left' | 'middle' | 'right' | 'rightright';
+
+export interface Entry {
+	title: string,
+	url: string
+}
 
 
 
@@ -25,14 +34,17 @@ export class Globales {
 	private random_image: boolean = false;
 	private image_index: number = 0;
 	private use_image: boolean = false;
+	private show_search: boolean = true;
 	private search_vertical_position: SearchVerticalPosition = 'center';
 	private search_horizontal_position: SearchHorizontalPosition = 'middle';
+	private search_engine: string = '';
 
 
 
 	constructor(private router: Router) {
 		let request = window.indexedDB.open('ptab', 1);
 		let from = this;
+		this.loadSettings();
 		request.onsuccess = function() {
 			from.db = request.result;
 			from.loadDB();
@@ -134,6 +146,13 @@ export class Globales {
 
 
 
+	public setShowSearch(show: boolean): void {
+		this.show_search = show;
+		window.localStorage.setItem('show_search', this.show_search.toString());
+	}
+	public showSearchBar(): boolean {
+		return this.show_search;
+	}
 	public getSearchVerticalPosition(): SearchVerticalPosition {
 		return this.search_vertical_position;
 	}
@@ -164,7 +183,6 @@ export class Globales {
 					});
 					cursor.continue()
 				} else {
-					from.loadSettings();
 					from.background = from.loadBackground();
 				}
 			}
@@ -195,6 +213,24 @@ export class Globales {
 			let temp = s.getItem('search_horizontal_position');
 			this.search_horizontal_position = <SearchHorizontalPosition> (temp != null ? temp : 'middle');
 		}
+		{
+			let temp = s.getItem('show_search');
+			this.show_search = <boolean> (temp != null ? temp == 'true' : true);
+		}
+		{
+			let temp = s.getItem('search_engine');
+			this.search_engine = <string> (temp != null ? temp : 'google');
+		}
+	}
+
+
+
+	public getSearchEngine(): string {
+		return this.search_engine;
+	}
+	public setSearchEngine(val: string): void {
+		this.search_engine = val;
+		window.localStorage.setItem('search_engine', val);
 	}
 
 
@@ -213,6 +249,24 @@ export class Globales {
 	public setBackgroundColor(c: string): void {
 		this.background_color = c;
 		window.localStorage.setItem('background_color', c);
+	}
+
+
+
+	public getHistory(search: string): Promise<Entry[]> {
+		let r: any;
+		new Promise<string[]>((resolve: any, reject: any) => {
+			r = resolve;
+		});
+		chrome.history?.search({text: search, maxResults: 10}, (data: any) => {
+			r.resolve(data.map((val: any) => {
+				return {
+					title: val.url,
+					url: val.url
+				};
+			}));
+		});
+		return r;
 	}
 
 

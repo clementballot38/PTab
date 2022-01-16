@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Globales, SearchVerticalPosition, SearchHorizontalPosition } from '../common/globales';
+import { Globales, SearchVerticalPosition, SearchHorizontalPosition, Entry } from '../common/globales';
 
 
 
@@ -13,6 +13,7 @@ import { Globales, SearchVerticalPosition, SearchHorizontalPosition } from '../c
 
 export class HomeComponent implements OnInit {
 	public url: string = '';
+	private history: Entry[] = [];
 
 
 
@@ -34,13 +35,43 @@ export class HomeComponent implements OnInit {
 			if(this.isURL()) {
 				window.location.assign('https://' + this.url);
 			} else {
-				window.location.assign('https://www.google.com/search?q=' + this.url)
+				switch(this.globales.getSearchEngine())
+				{
+					case 'bing':
+						window.location.assign('https://www.bing.com/search?q=' + this.url.replace(' ', '+'));
+						break;
+
+					case 'duckduckgo':
+						window.location.assign('https://duckduckgo.com/?q=' + this.url.replace(' ', '+'));
+						break;
+
+					case 'ecosia':
+						window.location.assign('https://www.ecosia.org/search?q=' + this.url.replace(' ', '+'));
+						break;
+
+					case 'brave':
+						window.location.assign('https://search.brave.com/search?q=' + this.url.replace(' ', '+'));
+						break;
+
+					case 'google':
+					default:
+						window.location.assign('https://www.google.com/search?q=' + this.url);
+						break;
+				}
+				
 			}
+		} else {
+			/*this.globales.getHistory(this.url).then((results: Entry[]) => {
+				this.history = results;
+			});*/
 		}
 	}
 
 
 
+	public showSearchBar(): boolean {
+		return this.globales.showSearchBar();
+	}
 	public getSearchVerticalPosition(): SearchVerticalPosition {
 		return this.globales.getSearchVerticalPosition();
 	}

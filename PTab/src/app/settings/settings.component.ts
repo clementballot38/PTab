@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Globales, Image, SearchVerticalPosition, SearchHorizontalPosition } from '../common/globales';
+import { SpinnerOption } from '../spinner/spinner.component';
 
 
 
@@ -21,22 +22,42 @@ interface MenuItem {
 
 export class SettingsComponent implements OnInit {
 	private state: string = '';
-
-
-
 	private menu_items: MenuItem[] = [
 		{ name: 'General', url: '', icon: 'home' },
-		{ name: 'Images', url: 'images', icon: 'image' },
+		{ name: 'Layout', url: 'layout', icon: 'layout' },
+		{ name: 'Gallery', url: 'images', icon: 'image' },
 		{ name: 'About', url: 'about', icon: 'about' }
+	];
+	private search_engines: SpinnerOption[] = [
+		{ name: 'Bing', value: 'bing' },
+		{ name: 'Brave', value: 'brave' },
+		{ name: 'DuckDuckGo', value: 'duckduckgo' },
+		{ name: 'Ecosia', value: 'ecosia' },
+		{ name: 'Google', value: 'google' }
 	];
 
 
 
 	constructor(private globales: Globales) {
+		this.select_default_engine();
 	}
 
 	ngOnInit(): void {
 
+	}
+
+
+
+	private select_default_engine(): void 
+	{
+		for(let i=0; i<this.search_engines.length; i++)
+		{
+			if(this.search_engines[i].value == this.globales.getSearchEngine())
+			{
+				this.search_engines[i].default = true;
+				return;
+			}
+		}
 	}
 
 
@@ -129,6 +150,12 @@ export class SettingsComponent implements OnInit {
 
 
 
+	public showSearchBar(ev: boolean): void {
+		this.globales.setShowSearch(ev);
+	}
+	public doShowSearchBar(): boolean {
+		return this.globales.showSearchBar();
+	}
 	public setSearchPosition(h: SearchHorizontalPosition, v: SearchVerticalPosition): void {
 		this.globales.setSearchPosition(h, v);
 	}
@@ -153,6 +180,17 @@ export class SettingsComponent implements OnInit {
 			if(tab[i] == val)
 				return i;
 		return 0;
+	}
+
+
+
+	public getSearchEngines(): SpinnerOption[]
+	{
+		return this.search_engines;
+	}
+	public selectSearchEngine(val: string): void
+	{
+		this.globales.setSearchEngine(val);
 	}
 
 

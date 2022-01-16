@@ -3,7 +3,7 @@
 	"name": "PTab",
 	"short_name": "PTab",
 	"description": "Personnalize your new tab page",
-	"version": "1.1",
+	"version": "1.2",
 	"icons": {
 		"16": "assets/icons/icon16.png",
 		"48": "assets/icons/icon48.png",

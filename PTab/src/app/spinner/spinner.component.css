@@ -1,0 +1,59 @@
+#container {
+	width: max-content;
+	display: inline-block;
+}
+
+
+
+#spinner {
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	border-bottom: 2px solid white;
+	width: 13em;
+	max-width: 80vw;
+	background: rgba(255, 255, 255, 0.10);
+	box-shadow: 0 0 15px #333;
+}
+
+#text {
+	flex: auto;
+	margin-left: 0.5em;
+}
+
+#open {
+	padding: 0.6em;
+}
+
+#arrow {
+	width: 12px;
+	height: 12px;
+	transform: translateY(-4px) rotate(-45deg);
+	border-left: 2px solid white;
+	border-bottom: 2px solid white;
+}
+
+
+
+#options {
+	background: rgba(255, 255, 255, 0.20);
+	box-shadow: 0 0 15px #333;
+	width: 13em;
+	max-width: 80vw;
+}
+
+.option {
+	padding: 1em;
+	cursor: pointer;
+}
+.option:hover {
+	background: rgba(255, 255, 255, 0.10);
+}
+
+
+
+.selected_icon {
+	width: 1em;
+	vertical-align: middle;
+	margin-right: 0.5em;
+}

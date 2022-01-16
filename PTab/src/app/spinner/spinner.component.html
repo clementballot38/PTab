@@ -1,0 +1,19 @@
+<div id="container">
+	<div id="spinner" (click)="this.open()">
+		<div id="text">
+			{{this.getCurrent()}}
+		</div>
+		<div id="open">
+			<div id="arrow"></div>
+		</div>
+	</div>
+
+
+
+	<div id="options" *ngIf="this.isOpen()">
+		<div *ngFor="let option of this.getOptions()" class="option" (click)="this.select(option)">
+			<img class="selected_icon" src="assets/svg/done.svg" *ngIf="this.isSelected(option)">
+			{{option.name}}
+		</div>
+	</div>
+</div>

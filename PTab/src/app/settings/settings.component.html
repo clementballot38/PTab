@@ -15,23 +15,6 @@
 			</h1>
 
 			<h2>
-				Search bar
-			</h2>
-			<div class="section">
-				Position : 
-				<svg id="position_container">
-					<g *ngFor="let vert of this.getVerticalPositions(); let i = index">
-						<rect *ngFor="let horiz of this.getHorizontalPositions(); let j = index"
-							class="search_position {{this.selectedPosition(horiz, vert)}}"
-							[attr.x]="(j+0.5)*20+'%'" [attr.y]="(i+0.5)*20+'%'" width="10" height="10"
-							(click)="this.setSearchPosition(horiz, vert)"
-						/>
-					</g>
-				</svg>
-			</div>
-
-
-			<h2>
 				Background
 			</h2>
 			<div class="section">
@@ -51,10 +34,48 @@
 					<input type="color" [value]="this.getBackgroundColor()" (change)="this.setBackgroundColor($event)" />
 				</div>
 			</div>
+
+			<h2>
+				Search engine
+			</h2>
+			<spinner [options]="this.getSearchEngines()" (value)="this.selectSearchEngine($event)"></spinner>
 		</div>
 
+
+
+		<div *ngIf="this.getState() == 'layout'">
+			<h1>
+				Layout editor
+			</h1>
+
+			<h2>
+				Search bar
+			</h2>
+			<div class="section">
+				<toggle-switch [state]="this.doShowSearchBar()" (value)="this.showSearchBar($event)"></toggle-switch> Show seach bar
+				<br><br>
+
+				<div *ngIf="this.doShowSearchBar()">
+					Position : 
+					<svg id="position_container">
+						<g *ngFor="let vert of this.getVerticalPositions(); let i = index">
+							<rect *ngFor="let horiz of this.getHorizontalPositions(); let j = index"
+								class="search_position {{this.selectedPosition(horiz, vert)}}"
+								[attr.x]="(j+0.5)*20+'%'" [attr.y]="(i+0.5)*20+'%'" width="10" height="10"
+								(click)="this.setSearchPosition(horiz, vert)"
+							/>
+						</g>
+					</svg>
+				</div>
+			</div>
+		</div>
+
+
+
 		<div *ngIf="this.getState() == 'images'">
-			<h2>Images</h2>
+			<h1>
+				Gallery
+			</h1>
 
 			<div id="img_container">
 				<div *ngIf="this.isRandom()" id="random_text">
@@ -78,6 +99,8 @@
 				</div>
 			</div>
 		</div>
+
+
 
 		<div *ngIf="this.getState() == 'about'">
 			<h2>About</h2>

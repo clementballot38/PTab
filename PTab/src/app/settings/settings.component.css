@@ -58,6 +58,7 @@
 	flex: 2;
 	backdrop-filter: blur(15px) brightness(60%);
 	padding: 1em;
+	overflow-y: auto;
 }
 
 
